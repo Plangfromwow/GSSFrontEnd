@@ -28,3 +28,21 @@ body {
 .btn-secondary {
   @apply inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-5 py-3 font-semibold text-white/90 backdrop-blur transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30;
 }
+
+/* Horizontal marquee slider for testimonial cards */
+.marquee {
+  overflow: hidden;
+}
+.marquee-track {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+  animation: marquee-swing 30s linear infinite alternate;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee-swing {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}

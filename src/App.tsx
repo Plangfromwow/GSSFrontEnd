@@ -109,56 +109,46 @@ const Services = () => (
   </Section>
 )
 
-type Testimonial = {
-  quote: string
-  author: string
-  role: string
-}
+type Testimonial = { quote: string; author: string; role: string }
 
 const testimonials: Testimonial[] = [
-  {
-    quote: 'Jacob quickly understood our messy workflows and delivered an internal tool that saved our team hours every week.',
-    author: 'A. Rivera',
-    role: 'Ops Manager, LogisticsCo'
-  },
-  {
-    quote: 'Our CRM and billing finally talk to each other. Revenue ops just got a lot smoother.',
-    author: 'M. Chen',
-    role: 'Head of Sales, FinWell'
-  },
-  {
-    quote: 'From idea to launch in four weeks. Clear communication, clean code, and real business results.',
-    author: 'S. Patel',
-    role: 'Founder, MarketNest'
-  }
+  { quote: '“Insert a strong, specific client quote here about impact and outcomes.”', author: 'Client Name', role: 'Title, Company' },
+  { quote: '“Another concise testimonial focused on results, trust, and speed.”', author: 'Client Name', role: 'Title, Company' },
+  { quote: '“Clear communication and measurable business value—highly recommended.”', author: 'Client Name', role: 'Title, Company' },
 ]
 
-const Testimonials = () => (
-  <Section id="testimonials">
-    <div className="mx-auto max-w-6xl">
-      <h2 className="text-center text-3xl font-bold sm:text-4xl">What clients say</h2>
-      <p className="mx-auto mt-3 max-w-2xl text-center text-white/70">Real results and smooth delivery.</p>
-      <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {testimonials.map((t) => (
-          <motion.figure
-            key={t.author}
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-10% 0px' }}
-            transition={{ duration: 0.5 }}
-            className="rounded-2xl border border-white/10 bg-white/[0.04] p-6 shadow-glow"
-          >
-            <blockquote className="text-white/90">“{t.quote}”</blockquote>
-            <figcaption className="mt-4 text-sm text-white/70">
-              <div className="font-semibold text-white">{t.author}</div>
-              <div>{t.role}</div>
-            </figcaption>
-          </motion.figure>
-        ))}
+// (autoplay hook removed in favor of CSS-driven marquee)
+
+const Testimonials = () => {
+  // Duplicate items to create an endless loop effect
+  const items = [...testimonials, ...testimonials]
+  return (
+    <Section id="testimonials">
+      <div className="mx-auto max-w-6xl">
+        <h2 className="text-center text-3xl font-bold sm:text-4xl">What clients say</h2>
+        <p className="mx-auto mt-3 max-w-2xl text-center text-white/70">Cards slide slowly; hover to pause.</p>
+
+        <div className="marquee mt-8">
+          <div className="marquee-track">
+            {items.map((t, i) => (
+              <motion.figure
+                key={i}
+                whileHover={{ y: -4 }}
+                className="w-[24rem] shrink-0 rounded-2xl border border-white/10 bg-white/[0.04] p-6 shadow-glow"
+              >
+                <blockquote className="text-white/90">{t.quote}</blockquote>
+                <figcaption className="mt-4 text-sm text-white/70">
+                  <div className="font-semibold text-white">{t.author}</div>
+                  <div>{t.role}</div>
+                </figcaption>
+              </motion.figure>
+            ))}
+          </div>
+        </div>
       </div>
-    </div>
-  </Section>
-)
+    </Section>
+  )
+}
 
 const CTA = () => (
   <Section className="py-20">
