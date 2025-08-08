@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Smooth fonts and base bg */
+:root {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  @apply bg-neutral-950 text-neutral-100 font-sans;
+}
+
+/* Reusable utility classes */
+.container-px {
+  @apply px-4 sm:px-6 lg:px-8;
+}
+
+.btn-primary {
+  @apply inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-brand to-accent px-5 py-3 font-semibold text-white shadow-lg shadow-brand/30 transition hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand/60;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-5 py-3 font-semibold text-white/90 backdrop-blur transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30;
+}
