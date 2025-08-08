@@ -31,7 +31,9 @@ body {
 
 /* Horizontal marquee slider for testimonial cards */
 .marquee {
-  overflow: hidden;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: visible; /* allow hover lift to show outside container */
 }
 .marquee-track {
   display: flex;
@@ -42,6 +44,8 @@ body {
 .marquee:hover .marquee-track {
   animation-play-state: paused;
 }
+/* make hover scale feel anchored */
+.marquee .rounded-2xl { transform-origin: center; }
 @keyframes marquee-swing {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
