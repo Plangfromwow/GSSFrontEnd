@@ -17,6 +17,7 @@ const Navbar = () => (
       <nav aria-label="Primary" className="hidden gap-6 text-sm font-medium text-white/80 sm:flex">
         <a className="hover:text-white" href="#services">Services</a>
         <a className="hover:text-white" href="#process">Process</a>
+        <a className="hover:text-white" href="#testimonials">Testimonials</a>
         <a className="hover:text-white" href="#contact">Contact</a>
       </nav>
       <div className="flex items-center gap-3">
@@ -103,6 +104,57 @@ const Services = () => (
         <Card icon={<Code2 />} title="Custom Web Apps" desc="React/TypeScript frontends with scalable APIs—dashboards, portals, and line-of-business tools." />
         <Card icon={<Workflow />} title="Integrations" desc="Connect CRMs, ERPs, and SaaS tools. Zapier/Make or custom API bridges to keep data flowing." />
         <Card icon={<Cpu />} title="Automation" desc="Replace manual tasks with reliable scripts and workflows. Save hours and reduce errors." />
+      </div>
+    </div>
+  </Section>
+)
+
+type Testimonial = {
+  quote: string
+  author: string
+  role: string
+}
+
+const testimonials: Testimonial[] = [
+  {
+    quote: 'Jacob quickly understood our messy workflows and delivered an internal tool that saved our team hours every week.',
+    author: 'A. Rivera',
+    role: 'Ops Manager, LogisticsCo'
+  },
+  {
+    quote: 'Our CRM and billing finally talk to each other. Revenue ops just got a lot smoother.',
+    author: 'M. Chen',
+    role: 'Head of Sales, FinWell'
+  },
+  {
+    quote: 'From idea to launch in four weeks. Clear communication, clean code, and real business results.',
+    author: 'S. Patel',
+    role: 'Founder, MarketNest'
+  }
+]
+
+const Testimonials = () => (
+  <Section id="testimonials">
+    <div className="mx-auto max-w-6xl">
+      <h2 className="text-center text-3xl font-bold sm:text-4xl">What clients say</h2>
+      <p className="mx-auto mt-3 max-w-2xl text-center text-white/70">Real results and smooth delivery.</p>
+      <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {testimonials.map((t) => (
+          <motion.figure
+            key={t.author}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-10% 0px' }}
+            transition={{ duration: 0.5 }}
+            className="rounded-2xl border border-white/10 bg-white/[0.04] p-6 shadow-glow"
+          >
+            <blockquote className="text-white/90">“{t.quote}”</blockquote>
+            <figcaption className="mt-4 text-sm text-white/70">
+              <div className="font-semibold text-white">{t.author}</div>
+              <div>{t.role}</div>
+            </figcaption>
+          </motion.figure>
+        ))}
       </div>
     </div>
   </Section>
@@ -209,6 +261,7 @@ export default function App() {
         <Hero />
         <Services />
         <Process />
+  <Testimonials />
         <Contact />
   <CTA />
       </main>
